@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
         "com.example.scooterRental.controller",
         "com.example.scooterRental.model",
         "com.example.scooterRentalApp.repository",
-        "com.example.scooterRentalApp.common"
+        "com.example.scooterRentalApp.common",
+        "com.example.scooterRentalApp.service"
 })
 //INFO: this is probably  NOT necessary if all packages are "below" main class, as in this app
 //in order to properly load components which represent controller, model, repositotory,... we must add this annotation (ComponentScan),
