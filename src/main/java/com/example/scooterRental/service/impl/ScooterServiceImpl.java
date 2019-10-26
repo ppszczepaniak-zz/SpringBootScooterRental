@@ -4,6 +4,7 @@ import com.example.scooterRental.api.request.AddScooterRequest;
 import com.example.scooterRental.api.response.AddScooterResponse;
 import com.example.scooterRental.common.MsgSource;
 import com.example.scooterRental.exception.CommonBadRequestException;
+import com.example.scooterRental.exception.CommonConflictException;
 import com.example.scooterRental.model.Scooter;
 import com.example.scooterRental.model.ScooterDock;
 import com.example.scooterRental.repository.ScooterDockRepository;
@@ -13,6 +14,9 @@ import com.example.scooterRental.service.ScooterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.util.Optional;
 
 import static com.example.scooterRental.common.ValidationUtils.*;
 
@@ -52,22 +56,37 @@ public class ScooterServiceImpl extends AbstractCommonService implements Scooter
                 || isNull(request.getMaxSpeed())
                 || isNull(request.getScooterDockId())
         ) {
-            throw new CommonBadRequestException(msgSource.ERR001);  //
+            throw new CommonBadRequestException(msgSource.ERR001);  //"Dane wymagane do realizacji żądania są niekompletne."
+        }
+
+        if (isIncorrectMaxSpeed(request.getMaxSpeed())) {
+            throw new CommonConflictException(msgSource.ERR007); //"Maksymalna prędkość hulajnogi powinna mieścić się w zakresie od 1 do 40."
         }
     }
 
     private ScooterDock extractScooterDockFromRepository(Long scooterDockId) {
-        //TODO find dock in DB or throw sth
-        return null;
+        Optional<ScooterDock> optionalScooterDock = scooterDockRepository.findById(scooterDockId);
+        if (!optionalScooterDock.isPresent()) {
+            throw new CommonConflictException(msgSource.ERR008); //"Dok o podanym id nie istnieje."
+        }
+        return optionalScooterDock.get();
     }
 
     private void checkIfThereIsAvailablePlaceInDock(ScooterDock scooterDock) {
-        //TODO throw sth
+        if (scooterDock.getAvailablePlace() <= scooterDock.getScooters().size()) { //if number of all places at dock is <= numbers of scooters at the dock
+            throw new CommonConflictException(msgSource.ERR009); //"Dok jest pełny."
+        }
     }
 
     private Scooter addScooterToScooterRepo(AddScooterRequest request, ScooterDock scooterDock) {
-        //TODO fill in missing data for Scooter and add it to ScooterRepo
-        return null;
+        Scooter scooter = new Scooter();
+        scooter.setModelName(request.getModelName());
+        scooter.setMaxSpeed(request.getMaxSpeed());
+        scooter.setRentalPrice(new BigDecimal(request.getRentalPrice()));
+        scooter.setScooterDock(scooterDock);
+        //don't set ID (DB does that) and UserAccount (it's for renting, not adding a scooter)
+
+        return scooterRepository.save(scooter); //adds to DB + returns object
     }
 
 
