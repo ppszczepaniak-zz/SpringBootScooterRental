@@ -12,11 +12,12 @@ import org.springframework.stereotype.Component;
 @ComponentScan(basePackages = {
         "com.example.scooterRental.controller",
         "com.example.scooterRental.model",
-        "com.example.scooterRentalApp.repository"
+        "com.example.scooterRentalApp.repository",
+        "com.example.scooterRentalApp.common"
 })
+//INFO: this is probably  NOT necessary if all packages are "below" main class, as in this app
 //in order to properly load components which represent controller, model, repositotory,... we must add this annotation (ComponentScan),
 // which describes which packages should be scanned in order to find Spring components
-//INFO: it probably is NOT  necessary if all packages are "below" main class, as in this app
 
 public class ScooterRentalApplication {
 
