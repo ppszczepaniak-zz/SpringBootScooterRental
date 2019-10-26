@@ -1,6 +1,7 @@
 # SpringBootScooterRental
 Scooter rental service. Technologies used:
 * SpringBoot
+* Maven
 * PostgreSQL 
 * REST API 
 * Swagger UI

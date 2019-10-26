@@ -25,7 +25,7 @@ public class ScooterDockServiceImpl extends AbstractCommonService implements Sco
     }
 
     @Override
-    @Transactional
+    @Transactional  //this is not necessary if we don't write anything to DB, but be careful - may also depend on FetchType LAZY/EAGER
     public ResponseEntity<Set<Scooter>> getAllDockedScooters(Long scooterDockId) {
         Optional<ScooterDock> optionalScooterDock = scooterDockRepository.findById(scooterDockId);
         if (!optionalScooterDock.isPresent()) { //if doesn't exists in DB

@@ -42,7 +42,7 @@ public class ScooterServiceImpl extends AbstractCommonService implements Scooter
         //this one is self expl.
         checkIfThereIsAvailablePlaceInDock(scooterDock);
         //then add scooter to DB
-        Scooter addedScooter = addScooterToScooterRepo(request, scooterDock);
+        Scooter addedScooter = addScooterToScooterRepo(request, scooterDock); //gives back ID from DB, which will go to Reponse
 
         //and gimme back my response
         return ResponseEntity.ok(new AddScooterResponse(msgSource.OK003, addedScooter.getId())); //OK003 = "Poprawnie dodano hulajnogę do systemu."
