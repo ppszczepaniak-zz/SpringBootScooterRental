@@ -3,11 +3,9 @@ package com.example.scooterRental.controller;
 
 import com.example.scooterRental.model.Scooter;
 import com.example.scooterRental.service.ScooterDockService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -23,9 +21,10 @@ public class ScooterDockController {
 
     //GET /scooter-dock/{scooterDockId}/scooters - żądanie będzie pozwalać na pobranie listy hulajnóg, które aktualnie znajdują się w stacji dokującej o danym id.
     @GetMapping(value = "/{scooterDockId}/scooters", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Set<Scooter>> getScooters(
             @PathVariable Long scooterDockId
     ) {
-        return null;
+        return scooterDockService.getAllDockedScooters(scooterDockId);
     }
 }
