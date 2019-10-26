@@ -1,4 +1,4 @@
-INSERT INTO public.scooter_dock(id, available_place, dock _name) VALUES
+INSERT INTO public.scooter_dock(id, available_place, dock_name) VALUES
 (1, 10, 'zachodni'),
 (2, 8, 'wschodni'),
 (3, 5, 'północny'),
