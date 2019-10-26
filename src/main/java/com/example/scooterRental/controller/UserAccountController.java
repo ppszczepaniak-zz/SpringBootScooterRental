@@ -36,7 +36,7 @@ public class UserAccountController {
             @PathVariable Long accountId,
             @RequestParam String amount
     ) {
-        return userAccountService.rechargeUserAccount(accountId,amount);
+        return userAccountService.rechargeUserAccount(accountId, amount);
     }
 
 

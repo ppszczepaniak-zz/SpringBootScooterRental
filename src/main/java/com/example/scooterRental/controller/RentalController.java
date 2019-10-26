@@ -24,7 +24,7 @@ public class RentalController {
             @PathVariable Long scooterId,
             @RequestParam Long accountId
     ) {
-        return rentalService.rentScooter(scooterId,accountId);
+        return rentalService.rentScooter(scooterId, accountId);
     }
 
 }
