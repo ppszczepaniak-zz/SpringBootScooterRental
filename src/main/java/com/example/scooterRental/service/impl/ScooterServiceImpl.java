@@ -8,7 +8,9 @@ import com.example.scooterRental.repository.ScooterRepository;
 import com.example.scooterRental.service.AbstractCommonService;
 import com.example.scooterRental.service.ScooterService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ScooterServiceImpl extends AbstractCommonService implements ScooterService {
 
     private ScooterRepository scooterRepository;
