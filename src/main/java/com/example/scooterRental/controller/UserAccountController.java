@@ -4,7 +4,6 @@ import com.example.scooterRental.api.BasicResponse;
 import com.example.scooterRental.api.request.CreateUserAccountRequest;
 import com.example.scooterRental.api.response.CreateUserAccountResponse;
 import com.example.scooterRental.service.UserAccountService;
-import com.example.scooterRental.service.impl.UserAccountServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("user-account")
 public class UserAccountController {
 
-    private UserAccountServiceImpl userAccountService;
+    private UserAccountService userAccountService;
 
-    public UserAccountController(UserAccountServiceImpl userAccountService) {
+    public UserAccountController(UserAccountService userAccountService) {
         this.userAccountService = userAccountService;
     }
 

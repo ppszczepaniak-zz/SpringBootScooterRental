@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("scooter")
 public class ScooterController {
 
-    private ScooterServiceImpl scooterService;
+    private ScooterService scooterService;
 
-    public ScooterController(ScooterServiceImpl scooterService) {
+    public ScooterController(ScooterService scooterService) {
         this.scooterService = scooterService;
     }
     //POST /scooter/add - żądanie będzie pozwalało na wprowadzenie nowej hulajnogi do systemu.

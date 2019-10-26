@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class RentalServiceImpl extends AbstractCommonService implements RentalService {
 
-
     private ScooterRepository scooterRepository;
     private UserAccountRepository userAccountRepository;
 

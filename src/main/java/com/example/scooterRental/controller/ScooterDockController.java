@@ -14,9 +14,9 @@ import java.util.Set;
 @RequestMapping("scooter-dock")
 public class ScooterDockController {
 
-    private ScooterDockServiceImpl scooterDockService;
+    private ScooterDockService scooterDockService;
 
-    public ScooterDockController(ScooterDockServiceImpl scooterDockService) {
+    public ScooterDockController(ScooterDockService scooterDockService) {
         this.scooterDockService = scooterDockService;
     }
 
