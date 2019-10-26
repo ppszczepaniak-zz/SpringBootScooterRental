@@ -28,7 +28,7 @@ public class ScooterDockServiceImpl extends AbstractCommonService implements Sco
     @Transactional
     public ResponseEntity<Set<Scooter>> getAllDockedScooters(Long scooterDockId) {
         Optional<ScooterDock> optionalScooterDock = scooterDockRepository.findById(scooterDockId);
-        if(!optionalScooterDock.isPresent()) { //if doesn't exists in DB
+        if (!optionalScooterDock.isPresent()) { //if doesn't exists in DB
             throw new CommonConflictException(msgSource.ERR008);  //ERR008 = "Dok o podanym id nie istnieje."
         }
         return ResponseEntity.ok(optionalScooterDock.get().getScooters());
