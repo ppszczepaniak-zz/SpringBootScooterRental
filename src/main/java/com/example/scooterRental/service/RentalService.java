@@ -6,5 +6,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface RentalService {
 
-    ResponseEntity<BasicResponse> createUserAccount(Long scooterId, Long accountId);
+    ResponseEntity<BasicResponse> rentScooter(Long scooterId, Long accountId);
 }

@@ -12,7 +12,7 @@ public class RentalController {
 
 
     @PutMapping(value = "/{scooterId}/scooter", produces = "application/json")
-    public ResponseEntity<BasicResponse> createUserAccount(
+    public ResponseEntity<BasicResponse> rentScooter(
             @PathVariable Long scooterId,
             @RequestParam Long accountId
     ) {
