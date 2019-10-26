@@ -1,4 +1,4 @@
-package com.example.scooterRental.utils;
+package com.example.scooterRental.common;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
