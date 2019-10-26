@@ -15,5 +15,5 @@ public class ScooterRentalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ScooterRentalApplication.class, args);
 	}
-
+//TODO add com.example.scooterRentalApp.model for compenent scan?
 }
