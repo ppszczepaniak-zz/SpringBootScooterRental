@@ -52,18 +52,18 @@ public class MsgSource {
         OK004 = ok004MsgValue;
 
         ERR001 = new ConstErrorMsg("ERR001", err001MsgValue);
-        ERR002 = new ConstErrorMsg("ERR002", err001MsgValue);
-        ERR003 = new ConstErrorMsg("ERR003", err001MsgValue);
-        ERR004 = new ConstErrorMsg("ERR004", err001MsgValue);
-        ERR005 = new ConstErrorMsg("ERR005", err001MsgValue);
-        ERR006 = new ConstErrorMsg("ERR006", err001MsgValue);
-        ERR007 = new ConstErrorMsg("ERR007", err001MsgValue);
-        ERR008 = new ConstErrorMsg("ERR008", err001MsgValue);
-        ERR009 = new ConstErrorMsg("ERR009", err001MsgValue);
-        ERR010 = new ConstErrorMsg("ERR010", err001MsgValue);
-        ERR011 = new ConstErrorMsg("ERR011", err001MsgValue);
-        ERR012 = new ConstErrorMsg("ERR012", err001MsgValue);
-        ERR013 = new ConstErrorMsg("ERR013", err001MsgValue);
+        ERR002 = new ConstErrorMsg("ERR002", err002MsgValue);
+        ERR003 = new ConstErrorMsg("ERR003", err003MsgValue);
+        ERR004 = new ConstErrorMsg("ERR004", err004MsgValue);
+        ERR005 = new ConstErrorMsg("ERR005", err005MsgValue);
+        ERR006 = new ConstErrorMsg("ERR006", err006MsgValue);
+        ERR007 = new ConstErrorMsg("ERR007", err007MsgValue);
+        ERR008 = new ConstErrorMsg("ERR008", err008MsgValue);
+        ERR009 = new ConstErrorMsg("ERR009", err009MsgValue);
+        ERR010 = new ConstErrorMsg("ERR010", err010MsgValue);
+        ERR011 = new ConstErrorMsg("ERR011", err011MsgValue);
+        ERR012 = new ConstErrorMsg("ERR012", err012MsgValue);
+        ERR013 = new ConstErrorMsg("ERR013", err013MsgValue);
 
 
     }
