@@ -3,6 +3,7 @@ package com.example.scooterRental.service.impl;
 import com.example.scooterRental.api.request.AddScooterRequest;
 import com.example.scooterRental.api.response.AddScooterResponse;
 import com.example.scooterRental.common.MsgSource;
+import com.example.scooterRental.exception.CommonBadRequestException;
 import com.example.scooterRental.model.Scooter;
 import com.example.scooterRental.model.ScooterDock;
 import com.example.scooterRental.repository.ScooterDockRepository;
@@ -12,6 +13,8 @@ import com.example.scooterRental.service.ScooterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static com.example.scooterRental.common.ValidationUtils.*;
 
 @Service
 public class ScooterServiceImpl extends AbstractCommonService implements ScooterService {
@@ -41,13 +44,16 @@ public class ScooterServiceImpl extends AbstractCommonService implements Scooter
         return ResponseEntity.ok(new AddScooterResponse(msgSource.OK003, addedScooter.getId())); //OK003 = "Poprawnie dodano hulajnogę do systemu."
     }
 
-    private Scooter addScooterToScooterRepo(AddScooterRequest request, ScooterDock scooterDock) {
-        //TODO fill in missing data for Scooter and add it to ScooterRepo
-        return null;
-    }
 
-    private void checkIfThereIsAvailablePlaceInDock(ScooterDock scooterDock) {
-        //TODO throw sth
+    private void validateAddScooterRequests(AddScooterRequest request) {
+        //checks if object is properly defined by user in request
+        if (isNullOrEmpty(request.getModelName())
+                || isNull(request.getRentalPrice())
+                || isNull(request.getMaxSpeed())
+                || isNull(request.getScooterDockId())
+        ) {
+            throw new CommonBadRequestException(msgSource.ERR001);  //
+        }
     }
 
     private ScooterDock extractScooterDockFromRepository(Long scooterDockId) {
@@ -55,7 +61,14 @@ public class ScooterServiceImpl extends AbstractCommonService implements Scooter
         return null;
     }
 
-    private void validateAddScooterRequests(AddScooterRequest request) {
+    private void checkIfThereIsAvailablePlaceInDock(ScooterDock scooterDock) {
         //TODO throw sth
     }
+
+    private Scooter addScooterToScooterRepo(AddScooterRequest request, ScooterDock scooterDock) {
+        //TODO fill in missing data for Scooter and add it to ScooterRepo
+        return null;
+    }
+
+
 }
