@@ -21,7 +21,7 @@ public class UserAccountController {
     }
 
 
-    @PutMapping(value = "/{accountId/recharge", produces = "application/json")
+    @PutMapping(value = "/{accountId}/recharge", produces = "application/json")
     public ResponseEntity<BasicResponse> rechargeUserAccount(
             @PathVariable Long accountId,
             @RequestParam String amount
