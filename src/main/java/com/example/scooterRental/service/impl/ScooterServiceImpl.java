@@ -28,11 +28,16 @@ public class ScooterServiceImpl extends AbstractCommonService implements Scooter
     @Override
     @Transactional
     public ResponseEntity<AddScooterResponse> addScooter(AddScooterRequest request) {
-        validateAddScooterRequests(request); //1st validate if request is correct
-        ScooterDock scooterDock = extractScooterDockFromRepository(request.getScooterDockId()); //then find correct docking station
-        checkIfThereIsAvailablePlaceInDock(scooterDock); //self expl.
-        Scooter addedScooter = addScooterToScooterRepo(request, scooterDock); //adds scooter to DB
+        //1st validate if request is correct
+        validateAddScooterRequests(request);
+        //then find correct docking station
+        ScooterDock scooterDock = extractScooterDockFromRepository(request.getScooterDockId());
+        //this one is self expl.
+        checkIfThereIsAvailablePlaceInDock(scooterDock);
+        //then add scooter to DB
+        Scooter addedScooter = addScooterToScooterRepo(request, scooterDock);
 
+        //and gimme back my response
         return ResponseEntity.ok(new AddScooterResponse(msgSource.OK003, addedScooter.getId())); //OK003 = "Poprawnie dodano hulajnogę do systemu."
     }
 
