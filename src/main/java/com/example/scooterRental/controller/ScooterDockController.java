@@ -3,6 +3,7 @@ package com.example.scooterRental.controller;
 
 import com.example.scooterRental.model.Scooter;
 import com.example.scooterRental.service.ScooterDockService;
+import com.example.scooterRental.service.impl.ScooterDockServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,9 @@ import java.util.Set;
 @RequestMapping("scooter-dock")
 public class ScooterDockController {
 
-    private ScooterDockService scooterDockService;
+    private ScooterDockServiceImpl scooterDockService;
 
-    public ScooterDockController(ScooterDockService scooterDockService) {
+    public ScooterDockController(ScooterDockServiceImpl scooterDockService) {
         this.scooterDockService = scooterDockService;
     }
 
