@@ -1,6 +1,7 @@
 # SpringBootScooterRental
 Scooter rental service. 
-Database with users, scooter docking stations & scooters.
+Database with users, scooter docking stations & scooters.  
+
 Main Features
 --------------
 - CRUD of users/scooters/docking stations
