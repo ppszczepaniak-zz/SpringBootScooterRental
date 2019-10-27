@@ -40,10 +40,10 @@ public class MsgSource {
             @Value("${common.const.error.msg.err007}") String err007MsgValue,
             @Value("${common.const.error.msg.err008}") String err008MsgValue,
             @Value("${common.const.error.msg.err009}") String err009MsgValue,
-            @Value("${common.const.error.msg.err0010}") String err010MsgValue,
-            @Value("${common.const.error.msg.err0011}") String err011MsgValue,
-            @Value("${common.const.error.msg.err0012}") String err012MsgValue,
-            @Value("${common.const.error.msg.err0013}") String err013MsgValue
+            @Value("${common.const.error.msg.err010}") String err010MsgValue,
+            @Value("${common.const.error.msg.err011}") String err011MsgValue,
+            @Value("${common.const.error.msg.err012}") String err012MsgValue,
+            @Value("${common.const.error.msg.err013}") String err013MsgValue
     ) {
         OK001 = ok001MsgValue;
         OK002 = ok002MsgValue;
