@@ -4,7 +4,6 @@ package com.example.scooterRental.controller;
 import com.example.scooterRental.api.request.AddScooterRequest;
 import com.example.scooterRental.api.response.AddScooterResponse;
 import com.example.scooterRental.service.ScooterService;
-import com.example.scooterRental.service.impl.ScooterServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

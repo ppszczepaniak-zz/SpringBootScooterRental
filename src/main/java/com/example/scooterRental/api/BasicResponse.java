@@ -3,7 +3,7 @@ package com.example.scooterRental.api;
 import com.example.scooterRental.api.type.ResponseStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) //why do I need this?
+@JsonInclude(JsonInclude.Include.NON_NULL) //this will eliminate from JSON null values
 public class BasicResponse {
 
     private String responseMsg;

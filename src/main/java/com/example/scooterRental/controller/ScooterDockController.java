@@ -3,7 +3,6 @@ package com.example.scooterRental.controller;
 
 import com.example.scooterRental.model.Scooter;
 import com.example.scooterRental.service.ScooterDockService;
-import com.example.scooterRental.service.impl.ScooterDockServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
