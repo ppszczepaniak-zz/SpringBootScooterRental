@@ -16,20 +16,20 @@ public class Scooter {
     private BigDecimal rentalPrice;
 
 
-    @JsonIgnore //to avoid nested JSONs
+    @JsonIgnore //dont JSON this field (to avoid nested JSONs)
     @ManyToOne(cascade = CascadeType.ALL)
     //many scooters can be in one dock
     @JoinColumn(name = "scooter_dock_id") //creates additional column
     //@JoinColumn contains info what's the name of column with FK to ScooterDock
     private ScooterDock scooterDock;
 
-    @JsonIgnore //to avoid nested JSONs
+    @JsonIgnore //dont JSON this field (to avoid nested JSONs)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn( //creates additional column
             name = "user_account_id",
             referencedColumnName = "id")
-    //TODO check later if referencedColumnName not required -
-    // it should work without it, spring finds the PK of the table by itself
+    // check later if referencedColumnName not required -
+    // it should work without it, Spring finds the PK of the table by itself
     private UserAccount userAccount;
 
     public Long getId() {
