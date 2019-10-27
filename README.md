@@ -1,5 +1,6 @@
 # SpringBootScooterRental
 City scooter rental service.   
+[![Build Status](https://travis-ci.org/ppszczepaniak/SpringBootScooterRental.svg?branch=master)](https://travis-ci.org/ppszczepaniak/SpringBootScooterRental)
 
 Main Features
 --------------
