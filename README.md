@@ -5,7 +5,7 @@ Scooter rental service. Technologies used:
 * Maven
 * PostgreSQL 
 * REST API 
-* Swagger UI
+* Swagger UI available at: http://localhost:8080/swagger-ui.html
 
 ```
 Must create "scooter_rental" database in PostgreSQL before starting the app
