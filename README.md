@@ -1,10 +1,9 @@
 # SpringBootScooterRental
-Scooter rental service.   
-PostgreSQLDatabase with users, scooters & scooter docking stations.
+City scooter rental service.   
 
 Main Features
 --------------
-- CRUD of users/scooters/docking stations
+- CRUD of users/scooters/docking stations in PostgreSQL
 - rent/return scooter, updated user balance, recharge balance
 - display custom messages/errors in JSON via message.properties 
 
