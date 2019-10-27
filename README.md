@@ -16,7 +16,7 @@ Technologies used:
 * REST API 
 * Swagger UI available at: http://localhost:8080/swagger-ui.html
 
-IMPORTANT
+
 ```
-Must create "scooter_rental" database in PostgreSQL before starting the app
+INFO: must create "scooter_rental" database in PostgreSQL before starting the app
 ```
