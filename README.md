@@ -1,4 +1,4 @@
-# SpringBootScooterRental[![Build Status](https://travis-ci.org/ppszczepaniak/SpringBootScooterRental.svg?branch=master)](https://travis-ci.org/ppszczepaniak/SpringBootScooterRental)
+# SpringBootScooterRental  [![Build Status](https://travis-ci.org/ppszczepaniak/SpringBootScooterRental.svg?branch=master)](https://travis-ci.org/ppszczepaniak/SpringBootScooterRental)
 City scooter rental service.   
 
 
