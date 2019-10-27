@@ -3,8 +3,8 @@ City scooter rental service.
 
 Main Features
 --------------
-- CRUD of users/scooters/docking stations in PostgreSQL
-- rent/return scooter, updated user balance, recharge balance
+- users/scooters/docking stations preloaded in PostgreSQL at startup
+- standard CRUD + option to rent/return scooter, decrease/recharge user balance, etc.
 - display custom messages/errors in JSON via message.properties 
 
 Technologies used:
