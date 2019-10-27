@@ -14,6 +14,7 @@ import com.example.scooterRental.service.RentalService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -32,6 +33,7 @@ public class RentalServiceImpl extends AbstractCommonService implements RentalSe
     }
 
     @Override
+    @Transactional
     public ResponseEntity<BasicResponse> rentScooter(Long scooterId, Long accountId) {
 
         //find user account
@@ -51,6 +53,7 @@ public class RentalServiceImpl extends AbstractCommonService implements RentalSe
     }
 
     @Override
+    @Transactional
     public ResponseEntity<BasicResponse> returnScooter(Long scooterId, Long dockId) {
 
         //find dock
