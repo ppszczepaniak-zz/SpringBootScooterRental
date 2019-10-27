@@ -1,11 +1,23 @@
-# SpringBootScooterRental
-Scooter rental service. Technologies used:
-* SpringBoot
+# SpringBootScooterRental 
+City scooter rental service.   
+
+
+Main Features
+--------------
+- users/scooters/docking stations preloaded in PostgreSQL at startup
+- standard CRUD + option to rent/return scooter, decrease/recharge user balance, etc.
+- display custom messages/errors in JSON via message.properties 
+
+Technologies used:
+--------------
+* Spring Boot
+* Spring Data
 * Maven
 * PostgreSQL 
 * REST API 
-* Swagger UI
+* Swagger UI available at: http://localhost:8080/swagger-ui.html
+
 
 ```
-Must create "scooter_rental" database in PostgreSQL before starting the app
+INFO: must create "scooter_rental" database in PostgreSQL before starting the app
 ```
