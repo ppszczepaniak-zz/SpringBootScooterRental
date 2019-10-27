@@ -27,4 +27,14 @@ public class RentalController {
         return rentalService.rentScooter(scooterId, accountId);
     }
 
+
+    @PutMapping(value = "/{scooterId}/return", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<BasicResponse> returnScooter(
+            @PathVariable Long scooterId,
+            @RequestParam Long dockId
+    ) {
+        return rentalService.returnScooter(scooterId, dockId);
+    }
+
 }

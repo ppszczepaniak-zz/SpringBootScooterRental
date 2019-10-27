@@ -4,7 +4,9 @@ import com.example.scooterRental.api.BasicResponse;
 import com.example.scooterRental.common.MsgSource;
 import com.example.scooterRental.exception.CommonConflictException;
 import com.example.scooterRental.model.Scooter;
+import com.example.scooterRental.model.ScooterDock;
 import com.example.scooterRental.model.UserAccount;
+import com.example.scooterRental.repository.ScooterDockRepository;
 import com.example.scooterRental.repository.ScooterRepository;
 import com.example.scooterRental.repository.UserAccountRepository;
 import com.example.scooterRental.service.AbstractCommonService;
@@ -20,11 +22,13 @@ public class RentalServiceImpl extends AbstractCommonService implements RentalSe
 
     private ScooterRepository scooterRepository;
     private UserAccountRepository userAccountRepository;
+    private ScooterDockRepository scooterDockRepository;
 
-    public RentalServiceImpl(MsgSource msgSource, ScooterRepository scooterRepository, UserAccountRepository userAccountRepository) {
+    public RentalServiceImpl(MsgSource msgSource, ScooterRepository scooterRepository, UserAccountRepository userAccountRepository, ScooterDockRepository scooterDockRepository) {
         super(msgSource);
         this.scooterRepository = scooterRepository;
         this.userAccountRepository = userAccountRepository;
+        this.scooterDockRepository = scooterDockRepository;
     }
 
     @Override
@@ -45,6 +49,26 @@ public class RentalServiceImpl extends AbstractCommonService implements RentalSe
         finalizeScooterRental(userAccount, scooter);
         return ResponseEntity.ok(BasicResponse.of(msgSource.OK004)); //Poprawnie wypożyczono hulajnogę.
     }
+
+    @Override
+    public ResponseEntity<BasicResponse> returnScooter(Long scooterId, Long dockId) {
+
+        //find dock
+        ScooterDock scooterDock = extractDockFromRepository(dockId);
+
+        //find scooter
+        Scooter scooter = extractScooterFromRepository(scooterId);
+
+        //validate
+        checkScooterRented(scooter);
+        checkIfThereIsAvailablePlaceInDock(scooterDock);
+
+        //...profit!!
+        finalizeScooterReturn(scooter, scooterDock);
+
+        return ResponseEntity.ok(BasicResponse.of(msgSource.OK005)); //Poprawnie zwrócono hulajnogę.
+    }
+
 
     //========private methods==========
     private UserAccount extractUserAccountFromRepository(Long accountId) {
@@ -87,4 +111,33 @@ public class RentalServiceImpl extends AbstractCommonService implements RentalSe
         scooter.setUserAccount(userAccount);
         scooterRepository.save(scooter);
     }
+
+
+    private void finalizeScooterReturn(Scooter scooter, ScooterDock scooterDock) {
+        scooter.setScooterDock(scooterDock);
+        scooter.setUserAccount(null);
+        scooterRepository.save(scooter);
+    }
+
+    private void checkIfThereIsAvailablePlaceInDock(ScooterDock scooterDock) {
+        if (scooterDock.getScooters().size() >= scooterDock.getAvailablePlace()) { //if number of scooters at dock is >= numbers of total places in dock
+            throw new CommonConflictException(msgSource.ERR009); //"Dok jest pełny."
+        }
+    }
+
+    private void checkScooterRented(Scooter scooter) {
+        if (scooter.getScooterDock() != null || scooter.getUserAccount() == null) {
+            throw new CommonConflictException(msgSource.ERR014); //Hulajnoga o podanym id nie była wypożyczona.
+        }
+
+    }
+
+    private ScooterDock extractDockFromRepository(Long dockId) {
+        Optional<ScooterDock> scooterDock = scooterDockRepository.findById(dockId);
+        if (!scooterDock.isPresent()) {
+            throw new CommonConflictException(msgSource.ERR008); //Dok o podanym id nie istnieje.
+        }
+        return scooterDock.get();
+    }
+
 }
