@@ -19,6 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @ExtendWith(SpringExtension.class) //in jUnit 4 it was @RunWith(SpringRunner.class)
 @SpringBootTest  //so it uses all Spring functionalities
@@ -115,7 +117,7 @@ public class UserAccountControllerTest {
     }
 
     @Test
-    public void ifCreateAccountRequestContainsAlreadyRegisteredEmailShouldReturnHttpCode400AndErrorMsg(int wrongAge) throws Exception {
+    public void ifCreateAccountRequestContainsAlreadyRegisteredEmailShouldReturnHttpCode400AndErrorMsg() throws Exception {
         mockMvc.perform(
                 post("/user-account/create")
                         .contentType(MediaType.APPLICATION_JSON)
