@@ -2,6 +2,7 @@ package com.example.scooterRental.controller;
 
 import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,9 @@ public class ScooterDockControllerTest {
     @Autowired  //injects MockMvc
     private MockMvc mockMvc;
 
-
     //check if getScooters works properly for dockID = 1
     @Test
-    public void ifGetScootersRequestIsCorrectShouldReturnHttpCode200AndInitialScooterList() throws Exception {
+    public void ifGetScootersRequestIs1ShouldReturnHttpCode200AndInitialScooterList() throws Exception {
         mockMvc.perform(get("/scooter-dock/{scooterDockId}/scooters", 1))     //1 = placeholder for {scooterDockId}
                 .andExpect(status().is(200))
                 .andExpect(content().json(
@@ -57,6 +57,17 @@ public class ScooterDockControllerTest {
                 ));
     }
 
+
+    //check if getScooters works properly for dockID = 2,3,4
+    @ParameterizedTest
+    @CsvFileSource(resources = "/scooterDockIdAndJSONresult.csv")
+    public void ifGetScootersRequestIsCorrectShouldReturnHttpCode200AndInitialScooterList(int dockId, String escapedJSON) throws Exception {
+        mockMvc.perform(get("/scooter-dock/{scooterDockId}/scooters", dockId))     //1 = placeholder for {scooterDockId}
+                .andExpect(status().is(200))
+                .andExpect(content().json(escapedJSON
+                ));
+    }
+
     //wrong DockIDs
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 9999, 568907690})
@@ -68,5 +79,6 @@ public class ScooterDockControllerTest {
                         "\t\"errorMsg\": \"Dok o podanym id nie istnieje.\",\n" +
                         "\t\"status\": \"ERROR\"\n}"));
     }
+
 
 }
