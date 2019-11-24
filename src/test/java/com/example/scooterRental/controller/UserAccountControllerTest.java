@@ -29,11 +29,19 @@ public class UserAccountControllerTest {
         mockMvc.perform(
                 post("/user-account/create")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\n\t\"ownerAge\": 22,\n\t\"ownerEmail\": \"janekexample.com\",\n\t\"ownerUsername\": \"name\"\n}") //e-mail without "@"
+                        .content("{\n" +
+                                "\t\"ownerAge\": 22,\n" +
+                                "\t\"ownerEmail\": \"janekexample.com\",\n" +
+                                "\t\"ownerUsername\": \"name\"\n}") //e-mail without "@"
         )
                 .andExpect(status().is(400))
-                .andExpect(content().json("{\n\t\"errorCode\": \"ERR002\",\n\t\"errorMsg\": \"Podaj poprawny adres e-mail.\",\n\t\"status\": \"ERROR\"\n}"))
+                .andExpect(content().json("{\n" +
+                        "\t\"errorCode\": \"ERR002\",\n" +
+                        "\t\"errorMsg\": \"Podaj poprawny adres e-mail.\",\n" +
+                        "\t\"status\": \"ERROR\"\n}"))
                 .andDo(MockMvcResultHandlers.print()); //andDo() allows to add functionality e.g. with print() it will list details of request
     }
+
+
 
 }
