@@ -15,6 +15,7 @@ Technologies used:
 * Maven
 * PostgreSQL 
 * REST API 
+* Junit 5
 * Swagger UI available at: http://localhost:8080/swagger-ui.html
 
 
