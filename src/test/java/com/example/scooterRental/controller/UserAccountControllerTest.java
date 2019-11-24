@@ -2,6 +2,8 @@ package com.example.scooterRental.controller;
 
 import org.junit.Test;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,14 +26,25 @@ public class UserAccountControllerTest {
     @Autowired  //injects MockMvc
     private MockMvc mockMvc;
 
-    @Test
-    public void ifCreateAccountRequestContainsWrongEmailAddressShouldReturnHttpCode400AndErrorMsg() throws Exception {
+    @ParameterizedTest
+    @ValueSource(strings = {"janekexample.com",
+            "plainaddress",
+            "#@%^%#$@#$@#.com",
+            "@example.com",
+            "Joe Smith <email@example.com>",
+            "email.example.com",
+            "email@example@example.com",
+            "あいうえお@example.com",
+            "email@example.com (Joe Smith)",
+            "email @gmail.com"
+    })
+    public void ifCreateAccountRequestContainsWrongEmailAddressShouldReturnHttpCode400AndErrorMsg(String wrongEmail) throws Exception {
         mockMvc.perform(
                 post("/user-account/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\n" +
                                 "\t\"ownerAge\": 22,\n" +
-                                "\t\"ownerEmail\": \"janekexample.com\",\n" +
+                                "\t\"ownerEmail\": \"" + wrongEmail + "\",\n" +
                                 "\t\"ownerUsername\": \"name\"\n}") //e-mail without "@"
         )
                 .andExpect(status().is(400))
@@ -41,7 +54,6 @@ public class UserAccountControllerTest {
                         "\t\"status\": \"ERROR\"\n}"))
                 .andDo(MockMvcResultHandlers.print()); //andDo() allows to add functionality e.g. with print() it will list details of request
     }
-
 
 
 }

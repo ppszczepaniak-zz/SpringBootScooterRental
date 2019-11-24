@@ -61,10 +61,10 @@ public class ScooterDockControllerTest {
     //check if getScooters works properly for dockID = 2,3,4
     @ParameterizedTest
     @CsvFileSource(resources = "/scooterDockIdAndJSONresult.csv")
-    public void ifGetScootersRequestIsCorrectShouldReturnHttpCode200AndInitialScooterList(int dockId, String escapedJSON) throws Exception {
+    public void ifGetScootersRequestIsCorrectShouldReturnHttpCode200AndInitialScooterList(int dockId, String JsonInCSV) throws Exception {
         mockMvc.perform(get("/scooter-dock/{scooterDockId}/scooters", dockId))     //1 = placeholder for {scooterDockId}
                 .andExpect(status().is(200))
-                .andExpect(content().json(escapedJSON
+                .andExpect(content().json(JsonInCSV
                 ));
     }
 
