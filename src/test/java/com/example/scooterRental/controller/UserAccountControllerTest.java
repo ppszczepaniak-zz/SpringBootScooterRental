@@ -6,6 +6,7 @@ import com.example.scooterRental.repository.UserAccountRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -18,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-
 
 import java.util.Optional;
 
@@ -82,7 +82,10 @@ public class UserAccountControllerTest {
                 .andExpect(content().json("{\n" +
                         "\t\"errorCode\": \"ERR003\",\n" +
                         "\t\"errorMsg\": \"Wiek powinien mieścić się w zakresie od 1 do 100.\",\n" +
-                        "\t\"status\": \"ERROR\"\n}"));
+                        "\t\"status\": \"ERROR\"\n}"))
+                .andDo(MockMvcResultHandlers.print()
+                );
+
     }
 
     @ParameterizedTest
@@ -111,4 +114,34 @@ public class UserAccountControllerTest {
         assertTrue(optionalUserAccount.isPresent());  //isPresent() returns true if optional contains object
     }
 
+    @Test
+    public void ifCreateAccountRequestContainsAlreadyRegisteredEmailShouldReturnHttpCode400AndErrorMsg(int wrongAge) throws Exception {
+        mockMvc.perform(
+                post("/user-account/create")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "\t\"ownerAge\":35,\n" +
+                                "\t\"ownerEmail\": \"johndoe@gmail.com\",\n" +
+                                "\t\"ownerUsername\": \"name\"\n}"
+                        )
+        );
+
+        mockMvc.perform(
+                post("/user-account/create")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                                "\t\"ownerAge\":35,\n" +
+                                "\t\"ownerEmail\": \"johndoe@gmail.com\",\n" + //same email
+                                "\t\"ownerUsername\": \"name\"\n}"
+                        )
+        )
+                .andExpect(status().is(400))
+                .andExpect(content().json("{\n" +
+                        "\t\"errorCode\": \"ERR004\",\n" +
+                        "\t\"errorMsg\": \"Konto o podanym adresie e-mail już istnieje.\",\n" +
+                        "\t\"status\": \"ERROR\"\n}"))
+                .andDo(MockMvcResultHandlers.print()
+                );
+
+    }
 }
