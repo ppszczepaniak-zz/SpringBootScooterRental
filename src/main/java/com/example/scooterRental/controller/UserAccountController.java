@@ -21,7 +21,7 @@ public class UserAccountController {
     //POST /user-account/create - żądanie odpowiadać będzie za utworzenie konta użytkownika w systemie.
     //PUT /user-account/{accountId}/recharge - żądanie będzie pozwalało na doładowanie konta użytkownika o podanym id.
 
-    @PostMapping(value = "/create", produces = "application/json")
+    @PostMapping(value = "/create", produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.CREATED) //201
     public ResponseEntity<CreateUserAccountResponse> createUserAccount(
             @RequestBody CreateUserAccountRequest request
@@ -30,7 +30,7 @@ public class UserAccountController {
     }
 
 
-    @PutMapping(value = "/{accountId}/recharge", produces = "application/json")
+    @PutMapping(value = "/{accountId}/recharge", produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BasicResponse> rechargeUserAccount(
             @PathVariable Long accountId,

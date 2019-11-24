@@ -1,0 +1,48 @@
+2, "[
+    {
+      ""id"": 11,
+      ""modelName"": ""ERE-321"",
+      ""maxSpeed"": 25,
+      ""rentalPrice"": 19.99
+    },
+    {
+      ""id"": 10,
+      ""modelName"": ""V-SPEED-1"",
+      ""maxSpeed"": 35,
+      ""rentalPrice"": 29.99
+    },
+    {
+      ""id"": 9,
+      ""modelName"": ""V-SPEED-1"",
+      ""maxSpeed"": 35,
+      ""rentalPrice"": 29.99
+    },
+    {
+      ""id"": 12,
+      ""modelName"": ""ERE-321"",
+      ""maxSpeed"": 25,
+      ""rentalPrice"": 19.99
+    }
+  ]"
+3, "[
+     {
+       ""id"": 13,
+       ""modelName"": ""V-SPEED-2"",
+       ""maxSpeed"": 40,
+       ""rentalPrice"": 39.99
+     },
+     {
+       ""id"": 14,
+       ""modelName"": ""V-SPEED-1"",
+       ""maxSpeed"": 35,
+       ""rentalPrice"": 29.99
+     }
+   ]"
+4, "[
+     {
+       ""id"": 15,
+       ""modelName"": ""RTT-43z"",
+       ""maxSpeed"": 20,
+       ""rentalPrice"": 15.5
+     }
+   ]"

@@ -19,7 +19,7 @@ public class ScooterController {
     }
     //POST /scooter/add - żądanie będzie pozwalało na wprowadzenie nowej hulajnogi do systemu.
 
-    @PostMapping(value = "/add", produces = "application/json")
+    @PostMapping(value = "/add", produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.CREATED) //201
     public ResponseEntity<AddScooterResponse> addScooter(
             @RequestBody AddScooterRequest request

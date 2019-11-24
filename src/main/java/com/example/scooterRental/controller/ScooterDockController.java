@@ -20,7 +20,7 @@ public class ScooterDockController {
     }
 
     //GET /scooter-dock/{scooterDockId}/scooters - żądanie będzie pozwalać na pobranie listy hulajnóg, które aktualnie znajdują się w stacji dokującej o danym id.
-    @GetMapping(value = "/{scooterDockId}/scooters", produces = "application/json")
+    @GetMapping(value = "/{scooterDockId}/scooters", produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Set<Scooter>> getScooters(
             @PathVariable Long scooterDockId

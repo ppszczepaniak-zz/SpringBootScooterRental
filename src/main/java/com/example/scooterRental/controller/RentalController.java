@@ -18,7 +18,7 @@ public class RentalController {
 
     //PUT /rental/{scooterId}/scooter - żądanie będzie pozwalało na wypożyczenie hulajnogi o wskazanym id.
 
-    @PutMapping(value = "/{scooterId}/scooter", produces = "application/json")
+    @PutMapping(value = "/{scooterId}/scooter", produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BasicResponse> rentScooter(
             @PathVariable Long scooterId,
@@ -28,7 +28,7 @@ public class RentalController {
     }
 
 
-    @PutMapping(value = "/{scooterId}/return", produces = "application/json")
+    @PutMapping(value = "/{scooterId}/return", produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BasicResponse> returnScooter(
             @PathVariable Long scooterId,
