@@ -1,6 +1,8 @@
 package com.example.scooterRental.controller;
 
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,12 +23,14 @@ public class ScooterDockControllerTest {
     @Autowired  //injects MockMvc
     private MockMvc mockMvc;
 
+
+    //check if getScooters works properly for dockID = 1
     @Test
     public void ifGetScootersRequestIsCorrectShouldReturnHttpCode200AndInitialScooterList() throws Exception {
         mockMvc.perform(get("/scooter-dock/{scooterDockId}/scooters", 1))     //1 = placeholder for {scooterDockId}
                 .andExpect(status().is(200))
                 .andExpect(content().json(
-                        "[{\n" +
+                        "[{\n" +  //JSON from SwaggerUI, formatted via https://onlinestringtools.com/convert-json-to-string + escaped
                                 "\t\"id\": 5,\n" +
                                 "\t\"modelName\": \"ERE-321\",\n" +
                                 "\t\"maxSpeed\": 25,\n" +
@@ -51,6 +55,18 @@ public class ScooterDockControllerTest {
                                 "\t\"rentalPrice\": 29.99\n" +
                                 "}]"
                 ));
+    }
+
+    //wrong DockIDs
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 9999, 568907690})
+    public void ifGetScootersRequestContainsDockIdWhichDoesNotExistShouldReturnCode409AndErrorMsg(int wrongId) throws Exception {
+        mockMvc.perform(get("/scooter-dock/{scooterDockId}/scooters", wrongId))
+                .andExpect(status().is(409))
+                .andExpect(content().json("{\n" +
+                        "\t\"errorCode\": \"ERR008\",\n" +
+                        "\t\"errorMsg\": \"Dok o podanym id nie istnieje.\",\n" +
+                        "\t\"status\": \"ERROR\"\n}"));
     }
 
 }
