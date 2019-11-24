@@ -106,7 +106,8 @@ public class UserAccountControllerTest {
                 myMvcRequestResult.getResponse().getContentAsString(), CreateUserAccountResponse.class  //inflates CreateUserAccountResponse.class with JSON data
         );
 
-        Optional<UserAccount> optionalUserAccount = userAccountRepository.findById(response.getAccountId()); //optional makes sure that object is non-null
+        Optional<UserAccount> optionalUserAccount = userAccountRepository.findById(response.getAccountId()); /*we check if account was really added - we find it in DB
+                                                                                                               optional makes sure that object is non-null*/
         Assert.assertTrue(optionalUserAccount.isPresent());  //isPresent() returns true if optional contains object
     }
 
